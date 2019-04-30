@@ -10,6 +10,7 @@
 \usepackage{tikz}
 \usepackage{blindtext}
 \usepackage{enumitem}
+\usepackage{caption}
 
 \usepackage{booktabs}
 \usepackage{array}
@@ -819,16 +820,16 @@ at (\x-.5,#2+0.5-\y) {};
         non viola nessun vincolo quando \texttt{From=To}, ma si tratta di un'\textit{azione useless} (non è una
         \textit{no-op} perchè \texttt{Plane} effettua un volo), \texttt{fly} è stata definita come segue
         \begin{verbatim} action(fly(Plane,From,To)) :- plane(Plane), airport(From),
-                               airport(To), From!=To.
+        airport(To), From!=To.
         \end{verbatim}
         imponendo come nuovo vincolo che non si possa mai effettuare un volo da e verso lo stesso areoporto.
     \end{itemize}
 
     \paragraph*{Il tempo\\}
     Si pone un limite al tempo di esecuzione del piano attraverso una congiunzione di vincoli relativi ai fluenti:
-        \begin{center}
-            \texttt{holds(Fluent,lastLev)}
-        \end{center}
+    \begin{center}
+        \texttt{holds(Fluent,lastLev)}
+    \end{center}
     dove \texttt{Fluent} è il fluente che si vuole rendere valido entro e non oltre il tempo \texttt{lastLev}.
     Inoltre gli effetti di ogni azione eseguita nel tempo \texttt{S} sono validi nel tempo \texttt{S+1}.
 
@@ -852,6 +853,34 @@ at (\x-.5,#2+0.5-\y) {};
     (\texttt{not holds(F,S+1)}), allora si può affermare che la non validità di \texttt{F}
     persista anche al tempo \texttt{S+1}.
 
+    Sono inoltre stati definiti dei vincoli globali tali che al tempo \texttt{S} non sia possibile che:
+    \begin{enumerate}
+        \item lo stesso aereo si trovi in due areoporti diversi. \label{itm:p_at}
+        \begin{verbatim}
+            :-  holds(at(Plane,Airport1),S),
+            holds(at(Plane,Airport2),S),
+            Airport1!=Airport2.
+        \end{verbatim}
+        \item la stessa merce si trovi in due areoporti diversi. \label{itm:c_at}
+        \begin{verbatim}
+            :-  holds(at(Cargo,Airport1),S),
+            holds(at(Cargo,Airport2),S),
+            Airport1!=Airport2.
+        \end{verbatim}
+        \item due aerei diversi contengano la stessa merce. \label{itm:c_in}
+        \begin{verbatim}
+            :-  holds(in(Cargo,Plane1),S),
+            holds(in(Cargo,Plane2),S),
+            Plane1!=Plane2.
+        \end{verbatim}
+    \end{enumerate}
+    Si è optato per questo approccio in modo che si possa considerare come fallimento sia
+    l'errata definizione dei fluenti validi al tempo \texttt{0}, ma anche la definizione inconsistente del goal.
+    Per esempio, se si pone che al tempo \texttt{0} un aereo si trovi in due areoporti diversi, il fallimento è
+    immediato, infatti nessuna soluzione è da prendere in considerazione.
+    Vale lo stesso nel caso si ponga come goal che, ad esempio, una stessa merce si trovi in due areoporti diversi.
+
+
     \paragraph*{Cargo Parallel\\}
     Dal momento che il numero di azioni eseguibili in un singolo stato non è limitato a 1, è necessario
     definire vincoli globali in modo che tale rilassamento del problema non crei inconsistenze.
@@ -864,44 +893,27 @@ at (\x-.5,#2+0.5-\y) {};
     Quindi è necessario definire i vincoli globali facendo riferimento in modo specifico agli aerei e alle merci:
     non è possibile che al tempo \texttt{S}
     \begin{enumerate}
-        \item lo stesso aereo si trovi in due areoporti diversi. \label{itm:p_at}
-        \begin{verbatim}
-            :-  holds(at(Plane,Airport1),S),
-                holds(at(Plane,Airport2),S),
-                Airport1!=Airport2.
-        \end{verbatim}
-        \item la stessa merce si trovi in due areoporti diversi. \label{itm:c_at}
-        \begin{verbatim}
-            :-  holds(at(Cargo,Airport1),S),
-                holds(at(Cargo,Airport2),S),
-                Airport1!=Airport2.
-        \end{verbatim}
-        \item due aerei diversi contengano la stessa merce. \label{itm:c_in}
-        \begin{verbatim}
-            :-  holds(in(Cargo,Plane1),S),
-                holds(in(Cargo,Plane2),S),
-                Plane1!=Plane2.
-        \end{verbatim}
+
         \item lo stesso aereo carichi/scarichi due merci diverse.
         \begin{verbatim}
             :-  occurs(load/unload(Cargo1,Plane,_),S),
-                occurs(load/unload(Cargo2,Plane,_),S),
-                Cargo1!=Cargo2.
+            occurs(load/unload(Cargo2,Plane,_),S),
+            Cargo1!=Cargo2.
         \end{verbatim}
         \item lo stesso aereo effettui un qualche volo e carichi una qualche merce.
         \begin{verbatim}
             :-  occurs(fly(Plane,_,_),S),
-                occurs(load(_,Plane,_),S).
+            occurs(load(_,Plane,_),S).
         \end{verbatim}
         \item lo stesso aereo effettui un qualche volo e scarichi una qualche merce.
         \begin{verbatim}
             :-  occurs(fly(Plane,_,_),S),
-                occurs(unload(_,Plane,_),S).
+            occurs(unload(_,Plane,_),S).
         \end{verbatim}
         \item lo stesso aereo scarichi una qualche merce e carichi una qualche merce.
         \begin{verbatim}
             :-  occurs(unload(_,Plane,_),S),
-                occurs(load(_,Plane,_),S).
+            occurs(load(_,Plane,_),S).
         \end{verbatim}
     \end{enumerate}
     Si è potuto omettere alcuni elementi sfruttando le proprietà del carattere "\texttt{\_}",
@@ -909,25 +921,113 @@ at (\x-.5,#2+0.5-\y) {};
     il pattern matching: non è necessario in questo caso rendere espliciti i vincoli relativi
     alle precondizioni e postcondizioni, poichè devono essere già rispettati.
 
-    Nonostante le regole~\ref{itm:p_at},~\ref{itm:c_at} e~\ref{itm:c_in} possano essere equivalentemente
-    sostituite da regole che considerino le azioni e non i fluenti, si è preferito questo approccio, in modo
-    che si possa considerare come fallimento anche l'errata definizione dei fluenti validi al tempo \texttt{0}.
-    Per esempio, se si pone che al tempo \texttt{0} un aereo si trovi in due areoporti diversi, il fallimento è
-    immediato.
+    Nonostante le regole~\ref{itm:p_at},~\ref{itm:c_at} e~\ref{itm:c_in}, nel caso \textit{parallelo}
+    possano essere equivalentemente sostituite da regole che considerino le azioni e non i fluenti,
+    si è preferito mantenere lo stesso approccio del caso precedente.
 
 
+    \subsubsection*{Soluzione e fallimento}
+    Per imporre che sia soddisfatta la validità di un insieme di fluenti si definisce, innanzitutto, la regola
+    \begin{center}
+        \texttt{goal :- holds(F$_1$,S$_1$), \dots, holds(F$_n$,S$_n$)}
+    \end{center}
+    Dove F$_i$ ed S$_i$ sono rispettivamente il fluente e il tempo dell'\textit{i}-esimo sottogoal.
+
+    Poi si pone il vincolo
+    \begin{center}
+        \texttt{:- not goal}
+    \end{center}
+    Se non è possibile rendere valido \texttt{goal} in almeno un modello il problema non è risolvibile.
+
+    Tutte le possibili soluzioni al problema sono date dai possibili modelli che rendono valido \texttt{goal}.
 
 
+    \subsubsection*{Esempi}
+    Sono presi in considerazione 6 possibili scenari, con 3 tipi di dominio diversi (\textit{piccolo, medio, grande}),
+    e 2 difficoltà diverse per ogni dominio (\textit{facile, difficile}).
 
+    \begin{itemize}
+        \item \textbf{Dominio}
 
+        \begin{tabular}{|c | c| c |c |}
+            \hline
+            &$|P|$&$|C|$&$|A|$\\
+            \hline
+            Piccolo &1&2&3\\
+            \hline
+            Medio   &2&4&5\\
+            \hline
+            Grande  &2&8&9\\
+            \hline
+        \end{tabular}
+        \item \textbf{Difficoltà}
+        \textit{Tutte} le merci si trovano in un areoporto diverso da quello di destinazione.
+        Questo perchè altrimenti si avrebbero alcune configurazioni triviali per alcune merci: la soluzione al
+        sottogoal è una lista vuota di azioni.
+        \begin{itemize}
 
+            \item Facile
+            \begin{enumerate}
+                \item Ogni aereo si trova al tempo \texttt{0} in un areoporto con almeno una merce.
+                \item Più merci possono trovarsi nello stesso areoporto al tempo \texttt{0}. \label{itm:same_airport}
+                \item Le merci hanno la stessa destinazione.
+            \end{enumerate}
+            (il punto \ref{itm:same_airport} è definito in questo modo perchè non si è voluto presentare problemi
+            banali, come quello in cui tutte le merci si trovano nello stesso areoporto e hanno la stessa destinazione)
+            \item Difficile
+            \begin{enumerate}
+                \item Ogni aereo si trova al tempo \texttt{0} in un areoporto senza merci.
+                \item Tutte le merci si trovano in areoporti diversi al tempo \texttt{0}.
+                \item Tutte le merci hanno una destinazione diversa.
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
+
+    Le seguenti tabelle presentano il numero minimo di passi per ogni configurazione, rispettivamente, per la soluzione
+    sequenziale (un'azione alla volta) e per quella parallela (più azioni alla volta per aerei diversi).
+    Come si può notare per il dominio piccolo, essendo presente un solo aereo, le due soluzioni sono equivalenti.
+    \begin{center}
+
+        \begin{tabular}{l c c c c c c}
+            \toprule % Top horizontal line
+            &\multicolumn{6}{c}{Numero minimo di passi} \\
+            \cmidrule(l){2-7}
+            & \multicolumn{2}{c}{Piccolo} & \multicolumn{2}{c}{Medio} & \multicolumn{2}{c}{Grande} \\
+            \cmidrule(l){2-7}
+            Strategia & Facile & Difficile & Facile & Difficile & Facile & Difficile\\
+            \midrule
+            Sequenziale &5  &6  &10 &12 & 20    & ---\\ % Content row 1
+            Parallelo   &5  &6  &5  &6  & 10    & 12\\ % Content row 2
+
+            \bottomrule
+        \end{tabular}
+    \end{center}
+
+    \begin{center}
+        \begin{tabular}{l c c c c c c}
+            \toprule % Top horizontal line
+            &\multicolumn{6}{c}{Tempo di esecuzione} \\
+            \cmidrule(l){2-7}
+            & \multicolumn{2}{c}{Piccolo} & \multicolumn{2}{c}{Medio} & \multicolumn{2}{c}{Grande} \\
+            \cmidrule(l){2-7}
+            Strategia & Facile & Difficile & Facile & Difficile & Facile & Difficile\\
+            \midrule
+            Sequenziale & 0.008 & 0.008 & 0.081 & 0.081 & 2428.557  & --- \\ % Content row 1
+            Parallelo   & 0.008 & 0.008 & 0.023 & 0.022 & 9.486     & 21.396\\ % Content row 2
+
+            \bottomrule
+        \end{tabular}
+    \end{center}
 
     \newpage
-    \noindent\section*{Appendice: scenari dei test degli algoritmi Prolog}
-    \subsection*{Labirinto}
+    \noindent
+
+    \section*{Appendice}
+    \subsection*{Scenari dei test degli algoritmi Prolog}
+    \paragraph*{Labirinto\\}
     In rosso sono indicate le posizioni difficili, in verde quelle facili;
-    P e A indicano le caselle di 	partenza ed arrivo.
-    \subsubsection*{Labirinto 10x10}
+    P e A indicano le caselle di 	partenza ed arrivo.\\\\
+    \textit{Labirinto 10x10}
     \begin{center}
         \begin{tikzpicture}[scale=1]
 
@@ -946,7 +1046,7 @@ at (\x-.5,#2+0.5-\y) {};
         \end{tikzpicture}
     \end{center}
     \newpage
-    \subsubsection*{Labirinto 20x20}
+    \noindent\textit{Labirinto 20x20}
     \begin{center}
         \begin{tikzpicture}[scale=0.75]
 
@@ -966,8 +1066,8 @@ at (\x-.5,#2+0.5-\y) {};
         \end{tikzpicture}
     \end{center}
     \newpage
-    \subsection*{Gioco delle tessere}
-    \subsubsection*{Gioco dell'8 facile}
+    \paragraph*{Gioco delle tessere\\\\}
+    \textit{Gioco dell'8 facile}
     \begin{center}
         \begin{tikzpicture}[scale=1]
 
@@ -986,7 +1086,7 @@ at (\x-.5,#2+0.5-\y) {};
 
         \end{tikzpicture}
     \end{center}
-    \subsubsection*{Gioco dell'8 difficile}
+    \textit{Gioco dell'8 difficile}
     \begin{center}
         \begin{tikzpicture}[scale=1]
 
@@ -1004,7 +1104,7 @@ at (\x-.5,#2+0.5-\y) {};
             \draw (0, 0) grid (3, 3);
         \end{tikzpicture}
     \end{center}
-    \subsubsection*{Gioco dell'15 facile}
+    \textit{Gioco dell'15 facile}
     \begin{center}
         \begin{tikzpicture}[scale=1]
 
@@ -1029,7 +1129,7 @@ at (\x-.5,#2+0.5-\y) {};
             \draw (0, 0) grid (4, 4);
         \end{tikzpicture}
     \end{center}
-    \subsubsection*{Gioco dell'15 difficile}
+    \textit{Gioco dell'15 difficile}
     \begin{center}
         \begin{tikzpicture}[scale=1]
 
@@ -1054,5 +1154,93 @@ at (\x-.5,#2+0.5-\y) {};
             \draw (0, 0) grid (4, 4);
         \end{tikzpicture}
     \end{center}
+
+
+    \newpage
+    \subsection*{Configurazioni problema del trasporto}
+    \paragraph*{Dominio Piccolo\\\\}
+    \noindent \textit{Facile\\}
+    \begin{minipage}{0.45\textwidth}
+        \begin{center}
+            \captionof{table}*{START}
+            \begin{tabular}{|c | c| c |}
+                \hline
+                A1&A2&A3\\
+                \hline
+                \textbf{C1} P1&\textbf{C2}&\\
+                \hline
+            \end{tabular}
+        \end{center}
+    \end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+        \begin{center}
+            \captionof{table}*{GOAL}
+            \begin{tabular}{|c | c| c |}
+                \hline
+                A1&A2&A3\\
+                \hline
+                \textbf{C2}&\textbf{C1}&\\
+                \hline
+            \end{tabular}
+        \end{center}
+    \end{minipage}%
+
+    \noindent \textit{ \\\\ Difficile\\}
+    \begin{minipage}{0.45\textwidth}
+        \begin{center}
+            \captionof{table}*{START}
+            \begin{tabular}{|c | c| c |}
+                \hline
+                A1&A2&A3\\
+                \hline
+                \textbf{C1} &\textbf{C2}&P1\\
+                \hline
+            \end{tabular}
+        \end{center}
+    \end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+
+        \begin{center}
+            \captionof{table}*{GOAL}
+            \begin{tabular}{|c | c| c |}
+                \hline
+                A1&A2&A3\\
+                \hline
+                \textbf{C2}&\textbf{C1}&\\
+                \hline
+            \end{tabular}
+
+        \end{center}
+    \end{minipage}
+    \paragraph*{Dominio Medio\\\\}
+    \begin{minipage}{0.45\textwidth}
+
+        \begin{center}
+            \captionof{table}*{GOAL}
+            \begin{tabular}{|c | c| c | c | c |}
+                \hline
+                A1&A2&A3&A4&A5\\
+                \hline
+                \textbf{C2}&\textbf{C1}&&&\\
+                \hline
+            \end{tabular}
+
+        \end{center}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+
+        \begin{center}
+            \captionof{table}*{GOAL}
+            \begin{tabular}{|c | c| c | c | c |}
+                \hline
+                A1&A2&A3&A4&A5\\
+                \hline
+                \textbf{C2}&\textbf{C1}&&&\\
+                \hline
+            \end{tabular}
+
+        \end{center}
+    \end{minipage}
+
 
 \end{document}
