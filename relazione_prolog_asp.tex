@@ -212,7 +212,6 @@ at (\x-.5,#2+0.5-\y) {};
         \end{tabular}
         \caption{Tempi di esecuzione (espressi in secondi)}
     \end{table}
-
     \begin{table}
         \centering
         \begin{tabular}{l c c c c}
@@ -929,9 +928,10 @@ at (\x-.5,#2+0.5-\y) {};
     \subsubsection*{Soluzione e fallimento}
     Per imporre che sia soddisfatta la validità di un insieme di fluenti si definisce, innanzitutto, la regola
     \begin{center}
-        \texttt{goal :- holds(F$_1$,S$_1$), \dots, holds(F$_n$,S$_n$)}
+        \texttt{goal :- subgoal\_c$_1$, \dots, subgoal\_c$_n$}
     \end{center}
-    Dove F$_i$ ed S$_i$ sono rispettivamente il fluente e il tempo dell'\textit{i}-esimo sottogoal.
+    dove \texttt{subgoal\_c$_i$} è della forma \texttt{holds(F$_i$,S$_i$)}, dove \texttt{F$_i$} \texttt{ed S$_i$}
+    sono rispettivamente il fluente e il tempo del sottogoal dell'\textit{i}-esima merce \texttt{c$_i$}.
 
     Poi si pone il vincolo
     \begin{center}
@@ -961,9 +961,9 @@ at (\x-.5,#2+0.5-\y) {};
             \hline
         \end{tabular}
         \item \textbf{Difficoltà}
-        \textit{Tutte} le merci si trovano in un areoporto diverso da quello di destinazione.
-        Questo perchè altrimenti si avrebbero alcune configurazioni triviali per alcune merci: la soluzione al
-        sottogoal è una lista vuota di azioni.
+        Tutte le merci si trovano in un areoporto diverso da quello di destinazione.
+        Questo perchè altrimenti si avrebbero alcune configurazioni triviali per alcune merci: la soluzione per il
+        sottogoal in questione è una lista vuota di azioni.
         \begin{itemize}
 
             \item Facile
@@ -973,7 +973,7 @@ at (\x-.5,#2+0.5-\y) {};
                 \item Le merci hanno la stessa destinazione.
             \end{enumerate}
             (il punto \ref{itm:same_airport} è definito in questo modo perchè non si è voluto presentare problemi
-            banali, come quello in cui tutte le merci si trovano nello stesso areoporto e hanno la stessa destinazione)
+            banali, come quello in cui tutte le merci si trovano nello stesso areoporto e hanno la stessa destinazione)\\
             \item Difficile
             \begin{enumerate}
                 \item Ogni aereo si trova al tempo \texttt{0} in un areoporto senza merci.
@@ -996,7 +996,7 @@ at (\x-.5,#2+0.5-\y) {};
             \cmidrule(l){2-7}
             Strategia & Facile & Difficile & Facile & Difficile & Facile & Difficile\\
             \midrule
-            Sequenziale &5  &6  &10 &12 & 20    & ---\\ % Content row 1
+            Sequenziale &5  &6  &10 &12 & 20    & 25\\ % Content row 1
             Parallelo   &5  &6  &5  &6  & 10    & 12\\ % Content row 2
 
             \bottomrule
@@ -1012,13 +1012,48 @@ at (\x-.5,#2+0.5-\y) {};
             \cmidrule(l){2-7}
             Strategia & Facile & Difficile & Facile & Difficile & Facile & Difficile\\
             \midrule
-            Sequenziale & 0.008 & 0.008 & 0.081 & 0.081 & 2428.557  & --- \\ % Content row 1
-            Parallelo   & 0.008 & 0.008 & 0.023 & 0.022 & 9.486     & 21.396\\ % Content row 2
+            Sequenziale & 0.008 & 0.008 & 0.081 & 0.081 & 2428.557  & 2727.133 \\ % Content row 1
+            Parallelo   & 0.008 & 0.008 & 0.041 & 0.041 & 3.026     & 48.202\\ % Content row 2
 
             \bottomrule
         \end{tabular}
     \end{center}
-
+    Quando il problema non è soddisfacibile è possibile che, per domini molto grandi, il tempo richiesto
+    per ottenere il risultato negativo sia troppo elevato, quindi interrompendo l'esecuzione non è possibile dimostrare
+    che il problema non sia risolvibile con un dato numero di passi.
+    Nel caso della procedura sequenziale per il dominio grande difficile, l'esecuzione con 24 passi è stata fermata
+    dopo 21223.197 secondi, cioè quasi 6 ore.
+    Vista la proporzione tra la difficoltà facile e difficile della strategia parallela si potrebbe ipoteticamente
+    assumere che il numero minimo di passi per la prima strategia nel caso \textit{dominio grande difficile} non sia 25,
+    ma 24.
+    Il problema è che, come sopra detto, la durata dell'esecuzione sarebbe troppo elevata: supponendo che la proporzione
+    sia approssimativamente affidabile, sarebbe necessario attendere più di $38.400$, cioè quasi 11 ore.
+\newpage
+    \subsubsection*{Guida all'esecuzione}
+    I file sono i seguenti
+    \begin{itemize}
+        \item \textbf{Procedure}
+        \begin{itemize}
+            \item \texttt{cargoSequential.cl}: procedura sequenziale
+            \item \texttt{cargoParallel.cl}: procedura parallela
+        \end{itemize}
+        \item \textbf{Dominio}
+        \begin{itemize}
+            \item \texttt{smallDomain.cl}: dominio piccolo (|P|=1, |C|=2, |A|=3)
+            \item \texttt{mediumDomain.cl}: dominio medio (|P|=2, |C|=4, |A|=5)
+            \item \texttt{bigDomain.cl}: dominio grande (|P|=2, |C|=8, |A|=9)
+        \end{itemize}
+        \item \textbf{Difficoltà}
+        \begin{itemize}
+            \item \texttt{easy<nome\_dominio>.cl}: una configurazione facile per ogni dominio
+            \item \texttt{hard<nome\_dominio>.cl}: una configurazione difficile per ogni dominio
+        \end{itemize}
+    \end{itemize}
+    Per avviare l'esecuzione è necessario esplicitare i seguenti parametri:
+    \begin{verbatim}
+        clingo <procedura> <dominio> <difficoltà>
+    \end{verbatim}
+    Il numero di passi massimo di esecuzione è definito nei file \texttt{<difficoltà>}.
     \newpage
     \noindent
 
@@ -1158,7 +1193,7 @@ at (\x-.5,#2+0.5-\y) {};
 
     \newpage
     \subsection*{Configurazioni problema del trasporto}
-    \paragraph*{Dominio Piccolo\\\\}
+    \paragraph*{Dominio Piccolo (|P|=1, |C|=2, |A|=3)\\\\}
     \noindent \textit{Facile\\}
     \begin{minipage}{0.45\textwidth}
         \begin{center}
@@ -1212,16 +1247,18 @@ at (\x-.5,#2+0.5-\y) {};
 
         \end{center}
     \end{minipage}
-    \paragraph*{Dominio Medio\\\\}
+    \paragraph*{Dominio Medio  (|P|=2, |C|=4, |A|=5)\\\\}
+
+    \noindent \textit{Facile\\}
     \begin{minipage}{0.45\textwidth}
 
         \begin{center}
-            \captionof{table}*{GOAL}
+            \captionof{table}*{START}
             \begin{tabular}{|c | c| c | c | c |}
                 \hline
                 A1&A2&A3&A4&A5\\
                 \hline
-                \textbf{C2}&\textbf{C1}&&&\\
+                \textbf{C1} P1&\textbf{C2 C4} P2&\textbf{C3}&&\\
                 \hline
             \end{tabular}
 
@@ -1235,7 +1272,37 @@ at (\x-.5,#2+0.5-\y) {};
                 \hline
                 A1&A2&A3&A4&A5\\
                 \hline
-                \textbf{C2}&\textbf{C1}&&&\\
+                \textbf{C3 C4}&\textbf{C1}&\textbf{C3}&&\\
+                \hline
+            \end{tabular}
+
+        \end{center}
+    \end{minipage}
+
+    \noindent \textit{ \\\\ Difficile\\}
+    \begin{minipage}{0.45\textwidth}
+
+        \begin{center}
+            \captionof{table}*{START}
+            \begin{tabular}{|c | c| c | c | c |}
+                \hline
+                A1&A2&A3&A4&A5\\
+                \hline
+                \textbf{C1}&\textbf{C2}&\textbf{C3}&\textbf{C4}&P1 P2\\
+                \hline
+            \end{tabular}
+
+        \end{center}
+    \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+
+        \begin{center}
+            \captionof{table}*{GOAL}
+            \begin{tabular}{|c | c| c | c | c |}
+                \hline
+                A1&A2&A3&A4&A5\\
+                \hline
+                \textbf{C4}&\textbf{C1}&\textbf{C2}&\textbf{C3}&\\
                 \hline
             \end{tabular}
 
@@ -1243,4 +1310,57 @@ at (\x-.5,#2+0.5-\y) {};
     \end{minipage}
 
 
+    \paragraph*{Dominio Grande  (|P|=2, |C|=8, |A|=9)\\\\}
+
+    \noindent \textit{Facile}
+
+    \begin{center}
+        \captionof{table}*{START}
+        \begin{tabular}{|c | c| c | c | c | c | c | c |c |}
+            \hline
+            A1&A2&A3&A4&A5&A6&A7&A8&A9\\
+            \hline
+            \textbf{C1 C2 C3} P1 &\textbf{C4 C5 C6} P2&\textbf{C7 C8}&&&&&&\\
+            \hline
+        \end{tabular}
+
+    \end{center}
+    \begin{center}
+        \captionof{table}*{GOAL}
+        \begin{tabular}{|c | c| c | c | c | c | c | c |c |}
+            \hline
+            A1&A2&A3&A4&A5&A6&A7&A8&A9\\
+            \hline
+            \textbf{C4 C7}&\textbf{C1 C8}&\textbf{C2 C5}&\textbf{C3 C6}&&&&&\\
+            \hline
+        \end{tabular}
+
+    \end{center}
+
+    \noindent \textit{Difficile}
+
+        \begin{center}
+            \captionof{table}*{START}
+            \begin{tabular}{|c | c| c | c | c | c | c | c |c |}
+                \hline
+                A1&A2&A3&A4&A5&A6&A7&A8&A9\\
+                \hline
+                \textbf{C1}  &\textbf{C2} &\textbf{C3}&\textbf{C4}&\textbf{C5}
+                &\textbf{C6}&\textbf{C7}&\textbf{C8}&P1 P2\\
+                \hline
+            \end{tabular}
+
+        \end{center}
+        \begin{center}
+            \captionof{table}*{GOAL}
+            \begin{tabular}{|c | c| c | c | c | c | c | c |c |}
+                \hline
+                A1&A2&A3&A4&A5&A6&A7&A8&A9\\
+                \hline
+                \textbf{C8}  &\textbf{C1} &\textbf{C2}&\textbf{C3}&\textbf{C4}
+                &\textbf{C5}&\textbf{C6}&\textbf{C7}&\\
+                \hline
+            \end{tabular}
+
+        \end{center}
 \end{document}

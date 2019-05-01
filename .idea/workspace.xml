@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31eb1cb3-d1f2-41dc-a4dd-e896cef3d983" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.aux" beforeDir="false" afterPath="$PROJECT_DIR$/out/relazione_prolog_asp.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.log" beforeDir="false" afterPath="$PROJECT_DIR$/out/relazione_prolog_asp.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/out/relazione_prolog_asp.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/out/relazione_prolog_asp.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/relazione_da_sistemare.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ialab_1_relazione.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.synctex.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/relazione_prolog_asp.tex" beforeDir="false" afterPath="$PROJECT_DIR$/relazione_prolog_asp.tex" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,61 +22,61 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/relazione_prolog_asp.tex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="831" column="109" selection-start-line="831" selection-start-column="109" selection-end-line="831" selection-end-column="109" />
+            <state relative-caret-position="285">
+              <caret line="1031" column="41" lean-forward="true" selection-start-line="1031" selection-start-column="41" selection-end-line="1031" selection-end-column="41" />
               <folding>
                 <element signature="e#69#96#2" expanded="true" />
-                <element signature="e#301#322#2" expanded="true" />
-                <element signature="e#26972#26981#3" expanded="true" />
-                <element signature="e#26985#26994#3" expanded="true" />
-                <element signature="e#28183#28192#3" expanded="true" />
-                <element signature="e#28196#28205#3" expanded="true" />
-                <element signature="e#28231#28240#3" expanded="true" />
-                <element signature="e#28244#28253#3" expanded="true" />
-                <element signature="e#29015#29024#3" expanded="true" />
-                <element signature="e#29028#29037#3" expanded="true" />
-                <element signature="e#29695#29704#3" expanded="true" />
-                <element signature="e#29708#29717#3" expanded="true" />
-                <element signature="e#29743#29752#3" expanded="true" />
-                <element signature="e#29756#29765#3" expanded="true" />
-                <element signature="e#30257#30266#3" expanded="true" />
-                <element signature="e#30270#30279#3" expanded="true" />
-                <element signature="e#30305#30314#3" expanded="true" />
-                <element signature="e#30318#30327#3" expanded="true" />
-                <element signature="e#30984#30993#3" expanded="true" />
-                <element signature="e#30997#31006#3" expanded="true" />
-                <element signature="e#31032#31041#3" expanded="true" />
-                <element signature="e#31045#31054#3" expanded="true" />
-                <element signature="e#31314#31323#3" expanded="true" />
-                <element signature="e#31327#31336#3" expanded="true" />
-                <element signature="e#31362#31371#3" expanded="true" />
-                <element signature="e#31375#31384#3" expanded="true" />
-                <element signature="e#31842#31851#3" expanded="true" />
-                <element signature="e#31855#31864#3" expanded="true" />
-                <element signature="e#32321#32330#3" expanded="true" />
-                <element signature="e#32334#32343#3" expanded="true" />
-                <element signature="e#33033#33038#3" expanded="true" />
-                <element signature="e#33075#33080#3" expanded="true" />
-                <element signature="e#33352#33357#3" expanded="true" />
-                <element signature="e#33373#33378#3" expanded="true" />
-                <element signature="e#33465#33470#3" expanded="true" />
-                <element signature="e#33486#33491#3" expanded="true" />
-                <element signature="e#36201#36206#2" expanded="true" />
-                <element signature="e#36329#36334#2" expanded="true" />
-                <element signature="e#36463#36468#2" expanded="true" />
-                <element signature="e#36632#36636#2" expanded="true" />
-                <element signature="e#36638#36642#2" expanded="true" />
-                <element signature="e#36648#36652#2" expanded="true" />
-                <element signature="e#36654#36658#2" expanded="true" />
-                <element signature="e#36800#36804#2" expanded="true" />
-                <element signature="e#36806#36810#2" expanded="true" />
-                <element signature="e#36816#36820#2" expanded="true" />
-                <element signature="e#36822#36826#2" expanded="true" />
-                <element signature="e#36960#36964#2" expanded="true" />
-                <element signature="e#36966#36970#2" expanded="true" />
-                <element signature="e#36976#36980#2" expanded="true" />
-                <element signature="e#36982#36986#2" expanded="true" />
-                <element signature="e#38556#38565#2" expanded="true" />
+                <element signature="e#322#343#2" expanded="true" />
+                <element signature="e#26992#27001#3" expanded="true" />
+                <element signature="e#27005#27014#3" expanded="true" />
+                <element signature="e#28203#28212#3" expanded="true" />
+                <element signature="e#28216#28225#3" expanded="true" />
+                <element signature="e#28251#28260#3" expanded="true" />
+                <element signature="e#28264#28273#3" expanded="true" />
+                <element signature="e#29035#29044#3" expanded="true" />
+                <element signature="e#29048#29057#3" expanded="true" />
+                <element signature="e#29715#29724#3" expanded="true" />
+                <element signature="e#29728#29737#3" expanded="true" />
+                <element signature="e#29763#29772#3" expanded="true" />
+                <element signature="e#29776#29785#3" expanded="true" />
+                <element signature="e#30277#30286#3" expanded="true" />
+                <element signature="e#30290#30299#3" expanded="true" />
+                <element signature="e#30325#30334#3" expanded="true" />
+                <element signature="e#30338#30347#3" expanded="true" />
+                <element signature="e#31004#31013#3" expanded="true" />
+                <element signature="e#31017#31026#3" expanded="true" />
+                <element signature="e#31052#31061#3" expanded="true" />
+                <element signature="e#31065#31074#3" expanded="true" />
+                <element signature="e#31334#31343#3" expanded="true" />
+                <element signature="e#31347#31356#3" expanded="true" />
+                <element signature="e#31382#31391#3" expanded="true" />
+                <element signature="e#31395#31404#3" expanded="true" />
+                <element signature="e#31862#31871#3" expanded="true" />
+                <element signature="e#31875#31884#3" expanded="true" />
+                <element signature="e#32341#32350#3" expanded="true" />
+                <element signature="e#32354#32363#3" expanded="true" />
+                <element signature="e#33053#33058#3" expanded="true" />
+                <element signature="e#33095#33100#3" expanded="true" />
+                <element signature="e#33372#33377#3" expanded="true" />
+                <element signature="e#33393#33398#3" expanded="true" />
+                <element signature="e#33485#33490#3" expanded="true" />
+                <element signature="e#33506#33511#3" expanded="true" />
+                <element signature="e#36221#36226#2" expanded="true" />
+                <element signature="e#36349#36354#2" expanded="true" />
+                <element signature="e#36483#36488#2" expanded="true" />
+                <element signature="e#36652#36656#2" expanded="true" />
+                <element signature="e#36658#36662#2" expanded="true" />
+                <element signature="e#36668#36672#2" expanded="true" />
+                <element signature="e#36674#36678#2" expanded="true" />
+                <element signature="e#36820#36824#2" expanded="true" />
+                <element signature="e#36826#36830#2" expanded="true" />
+                <element signature="e#36836#36840#2" expanded="true" />
+                <element signature="e#36842#36846#2" expanded="true" />
+                <element signature="e#36980#36984#2" expanded="true" />
+                <element signature="e#36986#36990#2" expanded="true" />
+                <element signature="e#36996#37000#2" expanded="true" />
+                <element signature="e#37002#37006#2" expanded="true" />
+                <element signature="e#38576#38585#2" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,6 +87,10 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>realistica</find>
+      <find>tempo}</find>
+      <find>sono validi</find>
+      <find>dominio</find>
+      <find>secondi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -102,12 +103,18 @@
       </list>
     </option>
   </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="27" />
+    <option name="width" value="800" />
+    <option name="height" value="873" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -124,8 +131,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Scaricati/ialab---dbn-master/DocumentazioneIA" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -140,53 +151,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <module name="ialab_1_relazione" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <module name="ialab_1_relazione" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="relazione_prolog_asp" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
       <texify>
         <compiler>PDFLATEX</compiler>
@@ -210,10 +174,33 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Written description.">
+      <created>1556469551642</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1556469551642</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Modified">
+      <created>1556648368073</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1556648368073</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="31eb1cb3-d1f2-41dc-a4dd-e896cef3d983" name="Default Changelist" comment="" />
+      <created>1556704457536</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556704457536</updated>
+      <workItem from="1556704459260" duration="6698000" />
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12749000" />
+    <option name="totallyTimeSpent" value="41966000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -235,10 +222,9 @@
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.11320755" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2762803" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -248,6 +234,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32884097" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -259,67 +246,75 @@
       <window_info anchor="right" id="Database" order="8" />
     </layout>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Written description." />
+    <MESSAGE value="Modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/missfont.log">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/relazione_prolog_asp.tex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="831" column="109" selection-start-line="831" selection-start-column="109" selection-end-line="831" selection-end-column="109" />
+        <state relative-caret-position="285">
+          <caret line="1031" column="41" lean-forward="true" selection-start-line="1031" selection-start-column="41" selection-end-line="1031" selection-end-column="41" />
           <folding>
             <element signature="e#69#96#2" expanded="true" />
-            <element signature="e#301#322#2" expanded="true" />
-            <element signature="e#26972#26981#3" expanded="true" />
-            <element signature="e#26985#26994#3" expanded="true" />
-            <element signature="e#28183#28192#3" expanded="true" />
-            <element signature="e#28196#28205#3" expanded="true" />
-            <element signature="e#28231#28240#3" expanded="true" />
-            <element signature="e#28244#28253#3" expanded="true" />
-            <element signature="e#29015#29024#3" expanded="true" />
-            <element signature="e#29028#29037#3" expanded="true" />
-            <element signature="e#29695#29704#3" expanded="true" />
-            <element signature="e#29708#29717#3" expanded="true" />
-            <element signature="e#29743#29752#3" expanded="true" />
-            <element signature="e#29756#29765#3" expanded="true" />
-            <element signature="e#30257#30266#3" expanded="true" />
-            <element signature="e#30270#30279#3" expanded="true" />
-            <element signature="e#30305#30314#3" expanded="true" />
-            <element signature="e#30318#30327#3" expanded="true" />
-            <element signature="e#30984#30993#3" expanded="true" />
-            <element signature="e#30997#31006#3" expanded="true" />
-            <element signature="e#31032#31041#3" expanded="true" />
-            <element signature="e#31045#31054#3" expanded="true" />
-            <element signature="e#31314#31323#3" expanded="true" />
-            <element signature="e#31327#31336#3" expanded="true" />
-            <element signature="e#31362#31371#3" expanded="true" />
-            <element signature="e#31375#31384#3" expanded="true" />
-            <element signature="e#31842#31851#3" expanded="true" />
-            <element signature="e#31855#31864#3" expanded="true" />
-            <element signature="e#32321#32330#3" expanded="true" />
-            <element signature="e#32334#32343#3" expanded="true" />
-            <element signature="e#33033#33038#3" expanded="true" />
-            <element signature="e#33075#33080#3" expanded="true" />
-            <element signature="e#33352#33357#3" expanded="true" />
-            <element signature="e#33373#33378#3" expanded="true" />
-            <element signature="e#33465#33470#3" expanded="true" />
-            <element signature="e#33486#33491#3" expanded="true" />
-            <element signature="e#36201#36206#2" expanded="true" />
-            <element signature="e#36329#36334#2" expanded="true" />
-            <element signature="e#36463#36468#2" expanded="true" />
-            <element signature="e#36632#36636#2" expanded="true" />
-            <element signature="e#36638#36642#2" expanded="true" />
-            <element signature="e#36648#36652#2" expanded="true" />
-            <element signature="e#36654#36658#2" expanded="true" />
-            <element signature="e#36800#36804#2" expanded="true" />
-            <element signature="e#36806#36810#2" expanded="true" />
-            <element signature="e#36816#36820#2" expanded="true" />
-            <element signature="e#36822#36826#2" expanded="true" />
-            <element signature="e#36960#36964#2" expanded="true" />
-            <element signature="e#36966#36970#2" expanded="true" />
-            <element signature="e#36976#36980#2" expanded="true" />
-            <element signature="e#36982#36986#2" expanded="true" />
-            <element signature="e#38556#38565#2" expanded="true" />
+            <element signature="e#322#343#2" expanded="true" />
+            <element signature="e#26992#27001#3" expanded="true" />
+            <element signature="e#27005#27014#3" expanded="true" />
+            <element signature="e#28203#28212#3" expanded="true" />
+            <element signature="e#28216#28225#3" expanded="true" />
+            <element signature="e#28251#28260#3" expanded="true" />
+            <element signature="e#28264#28273#3" expanded="true" />
+            <element signature="e#29035#29044#3" expanded="true" />
+            <element signature="e#29048#29057#3" expanded="true" />
+            <element signature="e#29715#29724#3" expanded="true" />
+            <element signature="e#29728#29737#3" expanded="true" />
+            <element signature="e#29763#29772#3" expanded="true" />
+            <element signature="e#29776#29785#3" expanded="true" />
+            <element signature="e#30277#30286#3" expanded="true" />
+            <element signature="e#30290#30299#3" expanded="true" />
+            <element signature="e#30325#30334#3" expanded="true" />
+            <element signature="e#30338#30347#3" expanded="true" />
+            <element signature="e#31004#31013#3" expanded="true" />
+            <element signature="e#31017#31026#3" expanded="true" />
+            <element signature="e#31052#31061#3" expanded="true" />
+            <element signature="e#31065#31074#3" expanded="true" />
+            <element signature="e#31334#31343#3" expanded="true" />
+            <element signature="e#31347#31356#3" expanded="true" />
+            <element signature="e#31382#31391#3" expanded="true" />
+            <element signature="e#31395#31404#3" expanded="true" />
+            <element signature="e#31862#31871#3" expanded="true" />
+            <element signature="e#31875#31884#3" expanded="true" />
+            <element signature="e#32341#32350#3" expanded="true" />
+            <element signature="e#32354#32363#3" expanded="true" />
+            <element signature="e#33053#33058#3" expanded="true" />
+            <element signature="e#33095#33100#3" expanded="true" />
+            <element signature="e#33372#33377#3" expanded="true" />
+            <element signature="e#33393#33398#3" expanded="true" />
+            <element signature="e#33485#33490#3" expanded="true" />
+            <element signature="e#33506#33511#3" expanded="true" />
+            <element signature="e#36221#36226#2" expanded="true" />
+            <element signature="e#36349#36354#2" expanded="true" />
+            <element signature="e#36483#36488#2" expanded="true" />
+            <element signature="e#36652#36656#2" expanded="true" />
+            <element signature="e#36658#36662#2" expanded="true" />
+            <element signature="e#36668#36672#2" expanded="true" />
+            <element signature="e#36674#36678#2" expanded="true" />
+            <element signature="e#36820#36824#2" expanded="true" />
+            <element signature="e#36826#36830#2" expanded="true" />
+            <element signature="e#36836#36840#2" expanded="true" />
+            <element signature="e#36842#36846#2" expanded="true" />
+            <element signature="e#36980#36984#2" expanded="true" />
+            <element signature="e#36986#36990#2" expanded="true" />
+            <element signature="e#36996#37000#2" expanded="true" />
+            <element signature="e#37002#37006#2" expanded="true" />
+            <element signature="e#38576#38585#2" expanded="true" />
           </folding>
         </state>
       </provider>
