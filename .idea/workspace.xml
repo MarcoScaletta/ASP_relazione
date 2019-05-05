@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="31eb1cb3-d1f2-41dc-a4dd-e896cef3d983" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/relazione_prolog_asp.tex" beforeDir="false" afterPath="$PROJECT_DIR$/relazione_prolog_asp.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/relazione_prolog_asp.log" beforeDir="false" afterPath="$PROJECT_DIR$/out/relazione_prolog_asp.log" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,11 +20,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/relazione_prolog_asp.tex">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="1031" column="41" lean-forward="true" selection-start-line="1031" selection-start-column="41" selection-end-line="1031" selection-end-column="41" />
+            <state relative-caret-position="323">
+              <caret line="1033" column="19" lean-forward="true" selection-start-line="1033" selection-start-column="19" selection-end-line="1033" selection-end-column="19" />
               <folding>
-                <element signature="e#69#96#2" expanded="true" />
-                <element signature="e#322#343#2" expanded="true" />
                 <element signature="e#26992#27001#3" expanded="true" />
                 <element signature="e#27005#27014#3" expanded="true" />
                 <element signature="e#28203#28212#3" expanded="true" />
@@ -113,8 +109,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,6 +125,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -194,13 +190,21 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556704457536</updated>
-      <workItem from="1556704459260" duration="6698000" />
+      <workItem from="1556704459260" duration="6768000" />
+      <workItem from="1556987038432" duration="643000" />
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="last modify">
+      <created>1556727561009</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1556727561009</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41966000" />
+    <option name="totallyTimeSpent" value="42679000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -215,7 +219,7 @@
     <frame x="0" y="27" width="1600" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.25321338" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25321338" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -224,7 +228,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2762803" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2762803" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -252,7 +256,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Written description." />
     <MESSAGE value="Modified" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modified" />
+    <MESSAGE value="last modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="last modify" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/missfont.log">
@@ -260,11 +265,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/relazione_prolog_asp.tex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="1031" column="41" lean-forward="true" selection-start-line="1031" selection-start-column="41" selection-end-line="1031" selection-end-column="41" />
+        <state relative-caret-position="323">
+          <caret line="1033" column="19" lean-forward="true" selection-start-line="1033" selection-start-column="19" selection-end-line="1033" selection-end-column="19" />
           <folding>
-            <element signature="e#69#96#2" expanded="true" />
-            <element signature="e#322#343#2" expanded="true" />
             <element signature="e#26992#27001#3" expanded="true" />
             <element signature="e#27005#27014#3" expanded="true" />
             <element signature="e#28203#28212#3" expanded="true" />
