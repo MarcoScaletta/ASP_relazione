@@ -276,7 +276,8 @@ at (\x-.5,#2+0.5-\y) {};
     Formulare e risolvere il seguente problema di soddisfacimento
     di vincoli:
     creazione di un \textbf{calendario settimanale di lezioni} universitarie con
-    allocazione nelle aule. Si ipotizzi la presenza di:
+    allocazione nelle aule.
+    Si ipotizzi la presenza di:
     \begin{itemize}
         \item studenti appartenenti ad almeno tre anni differenti
         \item almeno 3 corsi per ciascun gruppo (anno) di studenti
@@ -291,7 +292,7 @@ at (\x-.5,#2+0.5-\y) {};
     Il file \code{lesson\_csp.cl} contiene la soluzione del problema di soddisfazione di vincoli.
     \subsubsection*{Scelte implementative}
 
-    \begin{description}[align=left]
+    \begin{itemize}[align=left]
         \item \textbf{Costanti}
         \item [-- \code{num\_classrooms}:] numero massimo di aule, definito in base al numero di professori;
         \item [-- \code{num\_years}:] numero di anni in cui i corsi sono suddivisi;
@@ -305,30 +306,97 @@ at (\x-.5,#2+0.5-\y) {};
 
         \item [-- \code{num\_years}:] numero di anni in cui i corsi sono suddivisi.
         \item \textbf{Predicati}
+        \item [--] \code{course\_id(Id)}: \texttt{Id} è l'identificativo di un corso
+        \item [--] \texttt{year(Year)}: \texttt{Year} è l'identificativo di un anno
+        \item [--] \texttt{prof\_id(Id)}: \texttt{Id} è l'identificativo di un professore
+        \item [--] \texttt{slot\_id(Id)}: \texttt{Id} è l'identificativo di uno slot temporale
+        \item [--] \texttt{course\_id(Id)}: \texttt{Id} è l'identificativo di un corso
+        \item [--] \texttt{classroom\_id(Id)}: \texttt{Id} è l'identificativo di un'aula
 
         \item [-- \code{num\_max\_lessons\_per\_slot(Max)}:] definisce il numero massimo (\code{Max}) di lezioni che possono avere luogo nello stesso slot temporale, cioè contemporaneamente;
-        \item [-- \code{num\_max\_lessons\_per\_slot(Max)}:] definisce il numero massimo (\code{Max}) di lezioni che possono avere luogo nello stesso slot temporale, cioè contemporaneamente;
-        \item [-- \code{classroom\_id(Id)}:] \code{Id} è l'identificativo di un'aula;
         \item [-- \code{course(Id,Year)}:]  assegnazione di un corso (\code{Id}) a un anno (\code{Year});
         \item [-- \code{teaching(IdCourse,IdProf)}:] assegnazione di un corso (\code{IdCourse}) a un professore (\code{IdProf});
-        \item [-- \code{location(Classroom,Slot)}:] definizione di una locazione data da un aula (\code{Classroom}) e da uno slot temporale (\code{Slot});
+        \item [-- \code{location(Classroom,Slot)}:] definizione di una locazione data da un aula \\(\code{Class\-room}) e da uno slot temporale (\code{Slot});
         \item [-- \code{lesson(CourseId,location(Classroom,Slot))}:] assegnazione di una locazione (\code{location(Classroom,Slot)}) a un corso (\code{CourseId});
 
         \item \textbf{Vincoli}
-        \item [--] Il numero di aule non deve essere inferiore a 1 e non deve essere superiore a \code{num\_max\_classrooms}.
-        \item [--] Devono essere rispettati i limiti minimi di corsi per ogni anno, di corsi per ogni professore e di lezioni settimanali per ogni corso.
+        %\item [--] Il numero di aule non deve essere inferiore a 1 e non deve essere superiore a \code{num\_max\_classrooms}.
+        \item [--] Devono essere rispettati i limiti minimi
+
+        di corsi per ogni anno:
+        \begin{verbatim}    num_courses_for_year{course(Id,Year):course_id(Id)}
+        :-year(Year).
+        \end{verbatim}
+        di corsi per ogni professore:
+        \begin{verbatim}    num_courses_for_prof{
+            teaching(IdCourse,IdProf):course_id(IdCourse)
+        }:-prof_id(IdProf).
+        \end{verbatim}
+        e di lezioni settimanali per ogni corso:
+        \begin{verbatim}    num_lessons_per_course{
+            lesson(CourseId,location(Classroom,Slot))
+            :location(Classroom,Slot)
+        }num_lessons_per_course:-course_id(CourseId).
+        \end{verbatim}
+        Non sono stati posti vincoli superiori, come si può notare dagli aggregati sopra, questo perchè, nonostante
+        si possa migliorare l'efficienza aggiungendoli, si è preferito mettere in evidenza il fatto che i seguenti
+        aggregati sono "restrinctions", restrizioni, rispetto ai precedenti:
+
         \item [--] Ogni corso può essere assegnato a uno e un solo anno.
+        \begin{verbatim}        1{course(Id,Year):year(Year)}1:-course_id(Id).
+        \end{verbatim}
+
         \item [--] Ogni corso può essere assegnato a uno e un solo professore.
-        \item [--] Una lezione di corso non può avere luogo in due aule diverse durante stesso slot temporale.
-        \item [--] Due lezioni di due corsi diversi non possono avere luogo nella stessa aula durante lo stesso slot temporale.
-        \item [--] Un professore non può tenere due corsi diversi durante lo stesso slot temporale.
-        \item [--] Il numero dei corsi non può essere inferiore al numero di professori per il numero di corsi per professore.
-        \item [--] Non è possibile che il numero totale di lezioni che devono essere svolte superi il numero di lezioni che possono essere svolte nello stesso slot temporale per gli slot di tempo disponibili, quindi,  cioè che \begin{center}
-                                                                                                                                                                                                                                       \code{
-                                                                                                                                                                                                                                       num\_max\_lessons\_per\_slot(Max\_per\_slot), Max\_per\_slot*num\_slot\_ids < num\_courses\_for\_year*num\_years*num\_lessons\_per\_course.}
+        \begin{verbatim}
+        1{teaching(IdCourse,IdProf):
+            prof_id(IdProf)
+        }1:-course_id(IdCourse).
+        \end{verbatim}
+        \item [--]
+        Una lezione di corso non può avere luogo in due aule diverse durante stesso slot temporale:
+        \begin{verbatim}
+            :- lesson(Course,location(Classroom1,Slot)),
+            lesson(Course,location(Classroom2,Slot)),
+            Classroom1!=Classroom2.
+        \end{verbatim}
+        \item [--]
+        Due lezioni di due corsi diversi non possono avere luogo nella stessa aula durante lo stesso slot temporale.
+        \begin{verbatim}
+            :- lesson(CourseId1,location(Classroom,Slot)),
+            lesson(CourseId2,location(Classroom,Slot)),
+            CourseId1!=CourseId2.
+        \end{verbatim}
+        \item [--]
+        Un professore non può tenere due corsi diversi durante lo stesso slot temporale, indipendentemente dall'aula,
+        per questo motivo si usa la \textit{wildcard}.
+        \begin{verbatim}
+            :- lesson(CourseId1,location(_,Slot)),
+            lesson(CourseId2,location(_,Slot)),
+            teaching(CourseId1,Prof),
+            teaching(CourseId2,Prof),
+            prof_id(Prof),
+            CourseId1!=CourseId2.
+        \end{verbatim}
+
+        Infine i seguenti vincoli servono per eliminare i problemi banalmente non risolubili, cioè quando si verifica
+        che è possibile determinare qualora un problema abbia soluzione semplicemente dalle costanti o dai parametri
+        fissati. (É necessario sottolineare che con i seguenti vincoli è possibile determinare solo se \textbf{non}
+        esista la soluzione e non se esista)
+        \item [--]
+        Il numero dei corsi non può essere inferiore al numero di professori per il numero di corsi per professore.
+        \begin{verbatim}
+            :-num_years*num_courses_for_year <
+                num_prof*num_courses_for_prof.
+        \end{verbatim}
+        \item [--]
+        Non è possibile che il numero totale di lezioni che devono essere svolte superi il numero di lezioni che
+        possono essere svolte nello stesso slot temporale per gli slot di tempo disponibili, quindi,  cioè che
+        \begin{center}
+
+            \code{num\_max\_lessons\_per\_slot(Max\_per\_slot), Max\_per\_slot*num\_slot\_ids < num\_courses\_for\_year*num\_years*num\_lessons\_per\_course.}
         \end{center}
 
-    \end{description}
+    \end{itemize}
     \subsubsection*{Risultati}
     I seguenti sono i valori assegnati alle costanti.
     \begin{table}[h]
@@ -337,7 +405,7 @@ at (\x-.5,#2+0.5-\y) {};
             \hline
             Costanti &Valore\\ % Column names row
             \hline
-            \# anni &12\\
+            \# anni &4\\
             \# corsi per anno &3\\
             \# corsi &12\\
             \# professori &6\\
@@ -653,9 +721,10 @@ at (\x-.5,#2+0.5-\y) {};
     \end{table}\FloatBarrier
     \paragraph{Risultato con 1 aula:}
 
-    per l'implementazione che è stata scelta deve valere\begin{center}
+    per l'implementazione che è stata scelta deve valere
+    \begin{center}
 
-                                                            \#slot per le lezioni $\cdot$ \#aule  $\ge$ \#lezioni per corso $\cdot$ \#corsi
+        \#slot per le lezioni $\cdot$ \#aule  $\ge$ \#lezioni per corso $\cdot$ \#corsi
     \end{center}
     altrimenti il problema non è soddisfacibile. Quindi con solo \textbf{1 aula} a disposizione ci si aspetta che il problema non sia soddisfacibile, dal momento che il numero totale di lezioni
     \begin{center}
@@ -1006,7 +1075,7 @@ at (\x-.5,#2+0.5-\y) {};
     \begin{center}
         \begin{tabular}{l c c c c c c}
             \toprule % Top horizontal line
-            &\multicolumn{6}{c}{Tempo di esecuzione} \\
+            &\multicolumn{6}{c}{Tempo di esecuzione (in secondi)} \\
             \cmidrule(l){2-7}
             & \multicolumn{2}{c}{Piccolo} & \multicolumn{2}{c}{Medio} & \multicolumn{2}{c}{Grande} \\
             \cmidrule(l){2-7}
@@ -1028,7 +1097,7 @@ at (\x-.5,#2+0.5-\y) {};
     ma 24.
     Il problema è che, come sopra detto, la durata dell'esecuzione sarebbe troppo elevata: supponendo che la proporzione
     sia approssimativamente affidabile, sarebbe necessario attendere più di $38.400$, cioè quasi 11 ore.
-\newpage
+    \newpage
     \subsubsection*{Guida all'esecuzione}
     I file sono i seguenti
     \begin{itemize}
@@ -1339,28 +1408,28 @@ at (\x-.5,#2+0.5-\y) {};
 
     \noindent \textit{Difficile}
 
-        \begin{center}
-            \captionof{table}*{START}
-            \begin{tabular}{|c | c| c | c | c | c | c | c |c |}
-                \hline
-                A1&A2&A3&A4&A5&A6&A7&A8&A9\\
-                \hline
-                \textbf{C1}  &\textbf{C2} &\textbf{C3}&\textbf{C4}&\textbf{C5}
-                &\textbf{C6}&\textbf{C7}&\textbf{C8}&P1 P2\\
-                \hline
-            \end{tabular}
+    \begin{center}
+        \captionof{table}*{START}
+        \begin{tabular}{|c | c| c | c | c | c | c | c |c |}
+            \hline
+            A1&A2&A3&A4&A5&A6&A7&A8&A9\\
+            \hline
+            \textbf{C1}  &\textbf{C2} &\textbf{C3}&\textbf{C4}&\textbf{C5}
+            &\textbf{C6}&\textbf{C7}&\textbf{C8}&P1 P2\\
+            \hline
+        \end{tabular}
 
-        \end{center}
-        \begin{center}
-            \captionof{table}*{GOAL}
-            \begin{tabular}{|c | c| c | c | c | c | c | c |c |}
-                \hline
-                A1&A2&A3&A4&A5&A6&A7&A8&A9\\
-                \hline
-                \textbf{C8}  &\textbf{C1} &\textbf{C2}&\textbf{C3}&\textbf{C4}
-                &\textbf{C5}&\textbf{C6}&\textbf{C7}&\\
-                \hline
-            \end{tabular}
+    \end{center}
+    \begin{center}
+        \captionof{table}*{GOAL}
+        \begin{tabular}{|c | c| c | c | c | c | c | c |c |}
+            \hline
+            A1&A2&A3&A4&A5&A6&A7&A8&A9\\
+            \hline
+            \textbf{C8}  &\textbf{C1} &\textbf{C2}&\textbf{C3}&\textbf{C4}
+            &\textbf{C5}&\textbf{C6}&\textbf{C7}&\\
+            \hline
+        \end{tabular}
 
-        \end{center}
+    \end{center}
 \end{document}
